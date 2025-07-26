@@ -178,6 +178,7 @@ GEM
     net-smtp (0.5.1)
       net-protocol
     net-ssh (7.3.0)
+    news-api (0.2.0)
     nio4r (2.7.4)
     nokogiri (1.18.9-aarch64-linux-gnu)
       racc (~> 1.4)
@@ -386,6 +387,7 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   kamal
+  news-api
   pg (~> 1.1)
   propshaft
   puma (>= 5.0)
