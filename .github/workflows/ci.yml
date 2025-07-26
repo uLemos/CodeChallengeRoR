@@ -50,8 +50,12 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
-      - name: Lint code for consistent style
-        run: bin/rubocop -f github
+      - name: Lint code for consistent style and auto-correct with RuboCop
+        run: bin/rubocop -A -f github
+      
+      - name: Check for uncommitted changes after lint
+      run: |
+        git diff --exit-code || (echo "::error ::RuboCop found issues. Please run bin/rubocop -A locally." && exit 1)
 
   test:
     runs-on: ubuntu-latest
