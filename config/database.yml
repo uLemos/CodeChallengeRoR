@@ -22,7 +22,10 @@ default: &default
 
 development:
   <<: *default
-  database: news_aggregator_app_development
+  database: news_aggregator_development
+  host: db
+  username: <%= ENV['POSTGRES_USER'] %>
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
 
   # The specified database role being used to connect to PostgreSQL.
   # To create additional roles in PostgreSQL see `$ createuser --help`.
@@ -84,6 +87,8 @@ production:
     database: news_aggregator_app_production
     username: news_aggregator_app
     password: <%= ENV["NEWS_AGGREGATOR_APP_DATABASE_PASSWORD"] %>
+    host: <%= ENV["DB_HOST"] || "db" %>
+    port: 5432 
   cache:
     <<: *primary_production
     database: news_aggregator_app_production_cache
