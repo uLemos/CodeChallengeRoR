@@ -54,8 +54,8 @@ jobs:
         run: bin/rubocop -A -f github
       
       - name: Check for uncommitted changes after lint
-      run: |
-        git diff --exit-code || (echo "::error ::RuboCop found issues. Please run bin/rubocop -A locally." && exit 1)
+        run: |
+          git diff --exit-code || (echo "::error ::RuboCop found issues. Please run bin/rubocop -A locally." && exit 1)
 
   test:
     runs-on: ubuntu-latest
