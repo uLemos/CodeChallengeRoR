@@ -1,13 +1,13 @@
 class NewsApiService
-  require 'news-api'
+  require "news-api"
 
   @@newsapi = nil
 
   def self.initialize_news_api
-    @@newsapi ||= News.new(ENV['NEWS_API_KEY'])
+    @@newsapi ||= News.new(ENV["NEWS_API_KEY"])
   end
 
-  def self.fetch_top_headlines(query, sources = nil, category = nil, language = 'en', country = 'us')
+  def self.fetch_top_headlines(query, sources = nil, category = nil, language = "en", country = "us")
     initialize_news_api
     response = @@newsapi.get_top_headlines(
       q: query,
@@ -17,10 +17,10 @@ class NewsApiService
       country: country
     )
 
-    response['articles'] if response['status'] == 'ok'
+    response["articles"] if response["status"] == "ok"
   end
 
-  def self.fetch_all_articles(query, sources = nil, domains = nil, from = nil, to = nil, language = 'en', sort_by = 'relevancy', page = 1)
+  def self.fetch_all_articles(query, sources = nil, domains = nil, from = nil, to = nil, language = "en", sort_by = "relevancy", page = 1)
     initialize_news_api
     response = @@newsapi.get_all_articles(
       q: query,
@@ -33,12 +33,12 @@ class NewsApiService
       page: page
     )
 
-    response['articles'] if response['status'] == 'ok'
+    response["articles"] if response["status"] == "ok"
   end
 
-  def self.fetch_sources(country = 'us', language = 'en')
+  def self.fetch_sources(country = "us", language = "en")
     initialize_news_api
     response = @@newsapi.get_sources(country: country, language: language)
-    response['sources'] if response['status'] == 'ok'
+    response["sources"] if response["status"] == "ok"
   end
 end

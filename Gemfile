@@ -65,4 +65,4 @@ end
 # Devise is a flexible authentication solution for Rails based on Warden [https://github.com/heartcombo/devise?tab=readme-ov-file#starting-with-rails]
 gem "devise", "~> 4.9"
 
-gem 'news-api'
+gem "news-api"

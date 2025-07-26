@@ -1,0 +1,22 @@
+<h1>News Search</h1>
+
+<form method="get" action="/news/search">
+  <input type="text" name="query" placeholder="Search for news..." value="<%= params[:query] %>" />
+  <button type="submit">Search</button>
+</form>
+
+<% if @articles.any? %>
+  <ul>
+    <% @articles.each do |article| %>
+      <li>
+        <h2><%= article['title'] %></h2>
+        <p><%= article['source']['name']  %></p>
+        <p><%= article['description'] %></p>
+        <a href="<%= article['url'] %>" target="_blank">Read More</a>
+        <%= link_to 'Save for Later', read_later_path(article_id: article['source']['id']), method: :post %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No news found</p>
+<% end %>
