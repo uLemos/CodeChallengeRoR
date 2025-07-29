@@ -14,9 +14,9 @@
   <ul>
     <% @articles.each do |article| %>
       <li>
-        <h2><%= article.title %></h2>
-        <p><%= article.name  %></p>
-        <p><%= article.description %></p>
+        <h2><%= article.title.present? ? article.title : "Untitled Article" %></h2>
+        <p><%= article.name.present? ? article.name : "Name not available"%></p>
+        <p><%= article.description.present? ? article.description : "Description not available" %></p>
         <a 
           href="<%= article.url %>" 
           target="_blank"
