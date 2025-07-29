@@ -17,12 +17,12 @@ class NewsApiService
       country: country
     )
 
-    response["articles"] if response["status"] == "ok"
+    response if response.any?
   end
 
   def self.fetch_all_articles(query, sources = nil, domains = nil, from = nil, to = nil, language = "en", sort_by = "relevancy", page = 1)
     initialize_news_api
-    response = @@newsapi.get_all_articles(
+    response = @@newsapi.get_everything(
       q: query,
       sources: sources,
       domains: domains,
@@ -33,12 +33,12 @@ class NewsApiService
       page: page
     )
 
-    response["articles"] if response["status"] == "ok"
+    response if response.any?
   end
 
   def self.fetch_sources(country = "us", language = "en")
     initialize_news_api
     response = @@newsapi.get_sources(country: country, language: language)
-    response["sources"] if response["status"] == "ok"
+    response if response.any?
   end
 end

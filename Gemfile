@@ -66,3 +66,7 @@ end
 gem "devise", "~> 4.9"
 
 gem "news-api"
+
+gem "tailwindcss-rails"
+
+gem "foreman"

@@ -2,9 +2,12 @@ services:
   web:
     build:
       context: .
-    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -b '0.0.0.0'"
+      dockerfile: Dockerfile
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails db:create db:migrate && ./bin/dev"
+    tty: true
     volumes:
-      - ".:/app"
+      - ".:/rails"
+      - node_modules:/rails/node_modules
     ports:
       - "3000:3000"
     environment:
@@ -13,6 +16,8 @@ services:
       - db
     env_file:
       - .env
+    networks:
+    - news_aggregator_network
   
   db:
     image: postgres:latest
@@ -22,6 +27,15 @@ services:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - "5433:5432"
+    networks:
+      - news_aggregator_network
 
 volumes:
   postgres-data:
+  node_modules:
+
+networks:
+  news_aggregator_network:
+    driver: bridge

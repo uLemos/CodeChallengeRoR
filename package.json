@@ -1,0 +1,30 @@
+{
+  "name": "news_aggregator_app",
+  "version": "1.0.0",
+  "description": "This README would normally document whatever steps are necessary to get the application up and running.",
+  "main": "index.js",
+  "directories": {
+    "test": "test",
+    "lib": "lib"
+  },
+  "scripts": {
+    "build": "postcss app/assets/stylesheets/application.tailwind.css -o public/stylesheets/application.css",
+    "watch": "postcss app/assets/stylesheets/application.tailwind.css -o public/stylesheets/application.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uLemos/CodeChallengeRoR.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/uLemos/CodeChallengeRoR/issues"
+  },
+  "homepage": "https://github.com/uLemos/CodeChallengeRoR#readme",
+  "dependencies": {
+    "tailwindcss": "^4.1.11",
+    "postcss": "^8.3.6",
+    "autoprefixer": "^10.3.1"
+  }
+}

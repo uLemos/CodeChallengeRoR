@@ -2,18 +2,34 @@
 
 <form method="get" action="/news/search">
   <input type="text" name="query" placeholder="Search for news..." value="<%= params[:query] %>" />
-  <button type="submit">Search</button>
+  <button 
+    type="submit"
+    class=""
+  >
+    Search
+  </button>
 </form>
 
 <% if @articles.any? %>
   <ul>
     <% @articles.each do |article| %>
       <li>
-        <h2><%= article['title'] %></h2>
-        <p><%= article['source']['name']  %></p>
-        <p><%= article['description'] %></p>
-        <a href="<%= article['url'] %>" target="_blank">Read More</a>
-        <%= link_to 'Save for Later', read_later_path(article_id: article['source']['id']), method: :post %>
+        <h2><%= article.title %></h2>
+        <p><%= article.name  %></p>
+        <p><%= article.description %></p>
+        <a 
+          href="<%= article.url %>" 
+          target="_blank"
+          class=""
+        >
+          Read More
+        </a>
+        <%= 
+          button_to 'Save for Later', 
+          save_for_later_path(id: article.id, title: article.title, url: article.url, name: article.name), 
+          method: :post,
+          class: "text-blue-600 hover:underline bg-transparent border-0 p-0 cursor-pointer font-semibold"  
+        %>
       </li>
     <% end %>
   </ul>
