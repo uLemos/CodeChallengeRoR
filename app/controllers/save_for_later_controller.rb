@@ -9,16 +9,11 @@ class SaveForLaterController < ApplicationController
       a.source_name = params[:name]
     end
 
-    if article.nil?
-      flash[:alert] = "No article selected"
-      redirect_to search_news_index_path(query: params[:query]) and return
-    end
-
-    if article.persisted?
+    if current_user.read_laters.exists?(article: article)
+      flash[:alert] = "You have already saved this article for later!"
+    else
       current_user.read_laters.create(article: article)
       flash[:notice] = "Article saved for later!"
-    else
-      flash[:alert] = "Something went wrong"
     end
 
     redirect_to search_news_index_path(query: params[:query])
