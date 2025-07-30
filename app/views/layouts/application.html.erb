@@ -23,12 +23,34 @@
   </head>
 
   <body>
+    <header>
+      <nav>
+
+        <div>
+          <%= link_to "News Aggregator", root_path %>
+        </div>
+
+        <% if user_signed_in? %>
+          <div>
+            <span>Welcome, <%= current_user.email %></span>
+
+            <% if controller_name == "news" && action_name == "search" %>
+              <%= link_to "Saved Articles", read_later_news_index_path %>
+            <% elsif controller_name == "news" && action_name == "read_later" %>     
+              <%= link_to "← Back to Search", search_news_index_path %>   
+            <% end %>
+
+            <%= button_to "Logout", destroy_user_session_path, method: :delete %>
+          </div>
+        <% end %>
+      
+      </nav>
+    </header>
     <% if flash[:notice] %>
       <div class="flash flash-notice">
         <%= flash[:notice] %>
       </div>
     <% end %>
-
     <% if flash[:alert] %>
       <div class="flash flash-alert">
         <%= flash[:alert] %>

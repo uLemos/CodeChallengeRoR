@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root to: "news#search"
+
   get "save_for_later/create"
   devise_for :users
 
