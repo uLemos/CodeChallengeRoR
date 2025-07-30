@@ -72,3 +72,5 @@ gem "tailwindcss-rails"
 gem "foreman"
 
 gem "kaminari"
+
+gem "dotenv-rails"

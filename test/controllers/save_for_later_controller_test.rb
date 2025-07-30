@@ -22,12 +22,13 @@ class SaveForLaterControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should remove article from read later" do
-    post save_for_later_path, params: { id: @article.id }
+    post save_for_later_path, params: { url: @article.url, title: @article.title, name: @article.source_name }
 
     read_later = @user.read_laters.find_by(article_id: @article.id)
+    assert_not_nil read_later, "ReadLater should have been created"
 
     assert_difference("ReadLater.count", -1) do
-      delete news_read_later_path(news_id: @article.id, id: read_later.id)
+      delete news_read_later_path(news_id: read_later.article.id, id: read_later.id)
     end
 
     assert_response :redirect
