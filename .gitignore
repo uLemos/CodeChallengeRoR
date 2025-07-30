@@ -4,25 +4,25 @@
 # belong in git's global ignore instead:
 # `$XDG_CONFIG_HOME/git/ignore` or `~/.config/git/ignore`
 
-# Ignore bundler config.
-/.bundle
+# Ignore bundler config
+.bundle
 
-# Ignore all environment files.
-/.env*
+# Ignore all environment files
+.env*
 
-# Ignore all logfiles and tempfiles.
+# Ignore all logfiles and tempfiles
 /log/*
 /tmp/*
 /log/.keep
 /tmp/.keep
 
-# Ignore pidfiles, but keep the directory.
+# Ignore pidfiles, but keep the directory
 /tmp/pids/*
 /tmp/pids/
 /tmp/pids/.keep
 
-# Ignore storage (uploaded files in development and any SQLite databases).
-/storage/*
+# Ignore storage (uploaded files in development and any SQLite databases)
+storage/*
 /storage/.keep
 /tmp/storage/*
 /tmp/storage/
@@ -31,13 +31,13 @@
 # Ignore public assets (compiled by asset pipeline)
 # This may include precompiled assets in production, but also in development.
 # We don't want to version control compiled assets, as they can be rebuilt.
-/public/assets
+public/assets
 
-# Ignore master key for decrypting credentials and more.
+# Ignore master key for decrypting credentials and more
 /config/master.key
 
 # Ignore build files from asset pipeline (e.g. if using webpacker)
-/app/assets/builds/*
+app/assets/builds/*
 /app/assets/builds/.keep
 
 # Ignore node_modules (installed npm packages)
@@ -74,25 +74,25 @@ coverage/
 # Ignore any other unnecessary files or folders
 public/uploads/
 
-# Ignore logs
-/log/*
+# Ignore logs (ensure .keep is preserved to keep log directories)
+log/*
 /log/.keep  # Deixe o arquivo .keep para garantir que o diretório log seja preservado
 
-# Ignore o arquivo server.pid
+# Ignore the server.pid file
 /tmp/pids/*
 /tmp/pids/.keep
 
-# Ignore arquivos temporários, como cache, pids e outros
+# Ignore temporary files, like cache, pids, and others
 /tmp/*
 /tmp/.keep
 /tmp/cache
 /tmp/restart.txt
 
-# Ignore arquivos de cache e log de teste
+# Ignore test logs
 /log/test.log
 /log/development.log
 
-# Ignore arquivos temporários de editores/IDEs
+# Ignore temporary files from editors/IDEs
 *.swp
 *.swo
 *.sublime-workspace
@@ -101,6 +101,8 @@ public/uploads/
 # Ignore node_modules (dependências do Node.js)
 node_modules/
 
-# Ignore o diretório de testes, se não necessário
-/test.log
+# Ignore test logs if the test directory is present
+test.log
 /test/
+
+.kamal/

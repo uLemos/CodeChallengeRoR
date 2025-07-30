@@ -1,50 +1,50 @@
 # See https://docs.docker.com/engine/reference/builder/#dockerignore-file for more about ignoring files.
 
-# Ignore git directory.
-/.git/
+# Ignore git directory
+.git/
 /.gitignore
 
-# Ignore bundler config.
-/.bundle
+# Ignore bundler config
+.bundle
 
-# Ignore all environment files.
-/.env*
-  
-# Ignore all default key files for security reasons.
+# Ignore all environment files
+.env*
+
+# Ignore all default key files for security reasons
 /config/master.key
 /config/credentials/*.key
 
-# Ignore all logfiles and tempfiles.
+# Ignore all logfiles and tempfiles
 /log/*
 /tmp/*
 /log/.keep
 /tmp/.keep
 
-# Ignore pidfiles, but keep the directory.
+# Ignore pidfiles, but keep the directory
 /tmp/pids/*
 /tmp/pids/.keep
 
-# Ignore storage (uploaded files in development and any SQLite databases).
-/storage/*
+# Ignore storage (uploaded files in development and any SQLite databases)
+storage/*
 /storage/.keep
 /tmp/storage/*
 /tmp/storage/.keep
 
-# Ignore node_modules and npm/yarn lock files.
+# Ignore node_modules and npm/yarn lock files
 /node_modules/
 yarn-error.log
 package-lock.json
 /.yarn
 
-# Ignore compiled assets (e.g. webpack or asset pipeline builds).
-/app/assets/builds/*
+# Ignore compiled assets (e.g. webpack or asset pipeline builds)
+app/assets/builds/*
 /app/assets/builds/.keep
 /public/assets
 
-# Ignore CI service files.
-/.github
+# Ignore CI service files
+.github
 
-# Ignore Kamal files.
+# Ignore Kamal files
 /config/deploy*.yml
 /.kamal
 
@@ -90,10 +90,3 @@ coverage/
 /tmp/restart.txt
 /tmp/pids/*
 /tmp/pids/.keep
-
-# Ignore Kamal deployment files
-.config/deploy*.yml
-/.kamal
-
-
-
