@@ -27,6 +27,11 @@
       <% end %>
     <% end %>
   </ul>
+
+  <div class="pagination">
+    <%= paginate @saved_articles %>
+  </div>
+
 <% else %>
   <p>You have no saved articles.</p>
 <% end %>

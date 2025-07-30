@@ -70,3 +70,5 @@ gem "news-api"
 gem "tailwindcss-rails"
 
 gem "foreman"
+
+gem "kaminari"

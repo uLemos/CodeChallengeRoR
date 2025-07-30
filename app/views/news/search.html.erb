@@ -33,6 +33,11 @@
       </li>
     <% end %>
   </ul>
+    
+  <div class="pagination">
+    <%= paginate @articles %>
+  </div>
+
 <% else %>
   <p>No news found</p>
 <% end %>

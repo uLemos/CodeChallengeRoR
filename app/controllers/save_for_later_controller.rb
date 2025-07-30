@@ -1,15 +1,13 @@
 class SaveForLaterController < ApplicationController
   before_action :authenticate_user!
   def create
-    article_id = params[:id]
+    article = Article.find_by(url: params[:url])
 
-    article = Article.find_or_create_by(id: article_id) do |a|
-      a.title = params[:title]
-      a.url = params[:url]
-      a.source_name = params[:name]
+    unless article
+      article = Article.create(title: params[:title], url: params[:url], source_name: params[:name])
     end
 
-    if current_user.read_laters.exists?(article: article)
+    if current_user.read_laters.exists?(article_id: article.id)
       flash[:alert] = "You have already saved this article for later!"
     else
       current_user.read_laters.create(article: article)
