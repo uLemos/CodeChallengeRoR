@@ -1,43 +1,50 @@
-<h1>News Search</h1>
+<div class="flex flex-wrap justify-center items-start space-y-4 sm:space-y-0">
+  <form method="get" action="/news/search" class="w-full sm:flex sm:space-x-4 bg-white p-4 ">
+    <h1 class="text-3xl font-semibold text-gray-800 text-center my-2 w-full">News Search</h1>
+    <input 
+      type="text" 
+      name="query" 
+      placeholder="Search for news..." 
+      value="<%= params[:query] %>" 
+      class="w-full sm:w-2/3 p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+    />
+    <button 
+      type="submit"
+      class="w-full sm:w-1/3 mt-4 sm:mt-0 p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 hover:bg-gray-50 cursor-pointer"
+    >
+      Search
+    </button>
+  </form>
 
-<form method="get" action="/news/search">
-  <input type="text" name="query" placeholder="Search for news..." value="<%= params[:query] %>" />
-  <button 
-    type="submit"
-    class=""
-  >
-    Search
-  </button>
-</form>
+  <% if @articles.any? %>
+    <ul class="space-y-6">
+      <% @articles.each do |article| %>
+        <li class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300">
+          <h2 class="text-2xl font-semibold text-gray-800"><%= article.title.present? ? article.title : "Untitled Article" %></h2>
+          <p class="text-gray-600"><%= article.name.present? ? article.name : "Name not available"%></p>
+          <p class="text-gray-500 mt-2"><%= article.description.present? ? article.description : "Description not available" %></p>
+          <a 
+            href="<%= article.url %>" 
+            target="_blank"
+            class="mt-4 inline-block text-blue-600 hover:underline"
+          >
+            Read More
+          </a>
+          <%= 
+            button_to 'Save for Later', 
+            save_for_later_path(id: article.id, title: article.title, url: article.url, name: article.name), 
+            method: :post,
+            class: "mt-2 inline-block text-blue-600 hover:underline bg-transparent border-0 p-0 cursor-pointer font-semibold"
+          %>
+        </li>
+      <% end %>
+    </ul>
+      
+    <div class="mt-8 text-gray-500 mt-2 p-6">
+      <%= paginate @articles, class: "flex justify-center space-x-4" %>
+    </div>
 
-<% if @articles.any? %>
-  <ul>
-    <% @articles.each do |article| %>
-      <li>
-        <h2><%= article.title.present? ? article.title : "Untitled Article" %></h2>
-        <p><%= article.name.present? ? article.name : "Name not available"%></p>
-        <p><%= article.description.present? ? article.description : "Description not available" %></p>
-        <a 
-          href="<%= article.url %>" 
-          target="_blank"
-          class=""
-        >
-          Read More
-        </a>
-        <%= 
-          button_to 'Save for Later', 
-          save_for_later_path(id: article.id, title: article.title, url: article.url, name: article.name), 
-          method: :post,
-          class: "text-blue-600 hover:underline bg-transparent border-0 p-0 cursor-pointer font-semibold"  
-        %>
-      </li>
-    <% end %>
-  </ul>
-    
-  <div class="pagination">
-    <%= paginate @articles %>
-  </div>
-
-<% else %>
-  <p>No news found</p>
-<% end %>
+  <% else %>
+    <p class="text-center text-gray-500">No news found</p>
+  <% end %>
+</div>

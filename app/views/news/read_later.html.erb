@@ -1,37 +1,39 @@
-<h1>Articles Saved for Later</h1>
+<div class="flex flex-wrap justify-center items-start space-y-4 sm:space-y-0">
+  <h1 class="text-3xl font-semibold text-gray-800 text-center my-2 w-full">Articles Saved for Later</h1>
 
-<% if @saved_articles.any? %>
-  <ul>
-    <% @saved_articles.each do |read_later| %>
-      <% if read_later.article.present? %>
-        <li>
-          <h2><%= read_later.article.title.present? ? read_later.article.title : "Untitled Article" %></h2>
-          <p><%= read_later.article.source_name.present? ? read_later.article.source_name : "Name not available" %></p>
-          <a 
-            href="<%= read_later.article.url %>" 
-            target="_blank"
-            class="text-blue-600 hover:underline bg-transparent border-0 p-0 cursor-pointer font-semibold"
-          >
-            Read More
-          </a>
-          <%= 
-            button_to "Remove",
-            news_read_later_path(read_later.article.id, read_later.id),
-            method: :delete, 
-            data: { confirm: "Are you sure you want to remove this article from your list?" },
-            class: "text-blue-600 hover:underline bg-transparent border-0 p-0 cursor-pointer font-semibold" 
-          %>
-        </li>
-      <% else %>
-        <p> Article no longer available.</p>
+  <% if @saved_articles.any? %>
+    <ul class="space-y-6">
+      <% @saved_articles.each do |read_later| %>
+        <% if read_later.article.present? %>
+          <li class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300">
+            <h2 class="text-2xl font-semibold text-gray-800"><%= read_later.article.title.present? ? read_later.article.title : "Untitled Article" %></h2>
+            <p class="text-gray-600"><%= read_later.article.source_name.present? ? read_later.article.source_name : "Name not available" %></p>
+            <a 
+              href="<%= read_later.article.url %>" 
+              target="_blank"
+              class="mt-4 inline-block text-blue-600 hover:underline"
+            >
+              Read More
+            </a>
+            <%= 
+              button_to "Remove",
+              news_read_later_path(read_later.article.id, read_later.id),
+              method: :delete, 
+              data: { confirm: "Are you sure you want to remove this article from your list?" },
+              class: "text-blue-600 hover:underline bg-transparent border-0 p-0 cursor-pointer font-semibold" 
+            %>
+          </li>
+        <% else %>
+          <p class="text-center text-gray-500"> Article no longer available.</p>
+        <% end %>
       <% end %>
-    <% end %>
-  </ul>
+    </ul>
 
-  <div class="pagination">
-    <%= paginate @saved_articles %>
+  <div class="mt-8 text-gray-500 mt-2 p-6">
+    <%= paginate @saved_articles, class: "flex justify-center space-x-4" %>
   </div>
 
-<% else %>
-  <p>You have no saved articles.</p>
-<% end %>
+  <% else %>
+    <p class="text-center text-gray-500">You have no saved articles.</p>
+  <% end %>
+</div>

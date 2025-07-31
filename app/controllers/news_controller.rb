@@ -2,7 +2,12 @@ class NewsController < ApplicationController
   before_action :authenticate_user!
 
   def search
-    query = params[:query] || "latest"
+    query = params[:query].present? ? params[:query] : "latest"
+
+    # if query.eql?("latest")
+    #   flash[:alert] = "Please enter a search term!"
+    # end
+
     @articles = NewsApiService.fetch_all_articles(query)
     @articles = Kaminari.paginate_array(@articles).page(params[:page]).per(10)
   end

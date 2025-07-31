@@ -1,5 +1,6 @@
 class SaveForLaterController < ApplicationController
   before_action :authenticate_user!
+
   def create
     article = Article.find_by(url: params[:url])
 
