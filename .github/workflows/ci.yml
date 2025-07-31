@@ -20,7 +20,7 @@ jobs:
       postgres:
         image: postgres:15
         env:
-          POSTGRES_HOST: localhost
+          POSTGRES_HOST: db
           POSTGRES_USER: user
           POSTGRES_PASSWORD: password
           POSTGRES_DB: news_aggregator_test
@@ -54,7 +54,7 @@ jobs:
       - name: Run tests
         env:
           RAILS_ENV: test
-          DATABASE_URL: postgres://postgres:postgres@localhost:5432/news_aggregator_test
+          DATABASE_URL: postgres://user:password@db:5432/news_aggregator_test
           NEWS_API_KEY: ${{ secrets.NEWS_API_KEY }}
         run: bundle exec rspec
 
@@ -85,7 +85,7 @@ jobs:
         run: npm install -g @railway/cli
 
       - name: Deploy to Railway
-        env:
+        env:s
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: railway up --service news-aggregator ...
