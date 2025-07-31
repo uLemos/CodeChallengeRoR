@@ -3,5 +3,5 @@ class ReadLater < ApplicationRecord
   belongs_to :article
   validates :user, presence: true
   validates :article, presence: true
-  validates :user_id, uniqueness: { scope: :article_id, message: "You have already saved this article." }
+  validates :article_id, uniqueness: { scope: :user_id, message: "You have already saved this article." }
 end

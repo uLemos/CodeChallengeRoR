@@ -20,8 +20,13 @@ class ReadLatersController < ApplicationController
 
   def destroy
     @read_later = current_user.read_laters.find(params[:id])
-    @read_later.destroy
 
-    redirect_to read_later_news_index_path, notice: "Article removed from list"
+    if @read_later.destroy
+       flash[:notice] = "Article removed from list"
+    else
+      flash[:alert] = "Could not remove article"
+    end
+
+    redirect_to read_later_news_index_path
   end
 end
