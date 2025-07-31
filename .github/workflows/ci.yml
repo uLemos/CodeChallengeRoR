@@ -85,7 +85,7 @@ jobs:
         run: npm install -g @railway/cli
 
       - name: Deploy to Railway
-        env:s
+        env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: railway up --service news-aggregator ...
