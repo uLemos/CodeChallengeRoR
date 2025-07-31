@@ -1,19 +1,16 @@
 Rails.application.routes.draw do
   root to: "news#search"
 
-  get "save_for_later/create"
   devise_for :users
-
-  post "save_for_later", to: "save_for_later#create", as: "save_for_later"
 
   resources :news, only: [ :index ] do
     collection do
       get "search"
       get "read_later", action: :read_later
     end
-
-    resources :read_laters, only: [ :destroy ]
   end
+  resources :read_laters, only: [ :create, :destroy ]
+
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

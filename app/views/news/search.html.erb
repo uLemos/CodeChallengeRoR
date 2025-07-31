@@ -32,7 +32,7 @@
           </a>
           <%= 
             button_to 'Save for Later', 
-            save_for_later_path(id: article.id, title: article.title, url: article.url, name: article.name), 
+            read_laters_path(title: article.title, url: article.url, name: article.name), 
             method: :post,
             class: "mt-2 inline-block text-blue-600 hover:underline bg-transparent border-0 p-0 cursor-pointer font-semibold"
           %>

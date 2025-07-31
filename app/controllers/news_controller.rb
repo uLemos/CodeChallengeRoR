@@ -4,10 +4,6 @@ class NewsController < ApplicationController
   def search
     query = params[:query].present? ? params[:query] : "latest"
 
-    # if query.eql?("latest")
-    #   flash[:alert] = "Please enter a search term!"
-    # end
-
     @articles = NewsApiService.fetch_all_articles(query)
     @articles = Kaminari.paginate_array(@articles).page(params[:page]).per(10)
   end

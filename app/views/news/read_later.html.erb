@@ -17,7 +17,7 @@
             </a>
             <%= 
               button_to "Remove",
-              news_read_later_path(read_later.article.id, read_later.id),
+              read_later_path(read_later.id),
               method: :delete, 
               data: { confirm: "Are you sure you want to remove this article from your list?" },
               class: "text-blue-600 hover:underline bg-transparent border-0 p-0 cursor-pointer font-semibold" 
