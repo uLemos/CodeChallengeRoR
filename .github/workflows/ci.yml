@@ -118,7 +118,7 @@ jobs:
           clear_cache: false 
           wait_deploy: true
           # github_deployment: true
-          deployment_environment: 'development'
+          deployment_environment: 'production'
           github_token: ${{ secrets.GITHUB_TOKEN }}
       
       - name: Run migrations in production
