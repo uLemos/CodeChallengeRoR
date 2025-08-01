@@ -89,13 +89,28 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    name: Deploy to Render
+    name: Build Deploy to Render
     permissions:
       deployments: write
     needs: docker_build 
     
     steps:
-      - uses: JorgeLNJunior/render-deploy@v1.4.5
+
+      # Set up Ruby and Bundler for the deployment job
+      - name: Set up Ruby for deploy
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2.3'
+          bundler-cache: true
+
+      - name: Install dependencies for deploy
+        run: |
+          gem install bundler
+          bundle install
+          yarn install
+
+      - name: Deploy to Render
+        uses: JorgeLNJunior/render-deploy@v1.4.5
         with:
           service_id: ${{ secrets.RENDER_SERVICE_ID }}
           api_key: ${{ secrets.RENDER_API_KEY }}
