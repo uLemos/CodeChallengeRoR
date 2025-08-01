@@ -36,43 +36,56 @@ Antes de rodar o projeto, você precisará dos seguintes itens instalados:
    ```bash
    git clone https://github.com/uLemos/CodeChallengeRoR.git
    cd CodeChallengeRoR
+   ```
 
-    Instale as dependências:
+Instale as dependências:
 
-    Se você está utilizando Docker, você pode rodar os containers com o comando:
+Se você está utilizando Docker, você pode rodar os containers com o comando:
 
-docker-compose up
+```bash
+  docker-compose up
+```
 
 Se preferir rodar sem Docker, instale as dependências normalmente:
 
-gem install bundler
-bundle install
-yarn install
+```bash
+  gem install bundler
+  bundle install
+  yarn install
+```
 
 Configure o Banco de Dados:
 
 Configure as variáveis de ambiente necessárias (caso use Docker, isso pode já estar configurado). Para configurar localmente:
 
-export DATABASE_URL=postgres://username:password@localhost:5432/news_aggregator_development
-
+```bash
+  export DATABASE_URL=postgres://username:password@localhost:5432/news_aggregator_development
+```
 Em seguida, crie e migre o banco de dados:
 
-rails db:create
-rails db:migrate
+```bash
+  rails db:create
+  rails db:migrate
+```
+
 
 Inicie o Servidor:
 
 Para rodar o servidor Rails localmente, use o comando:
 
-    rails s
+```bash
+  rails s
+```
 
-    O aplicativo estará disponível em http://localhost:3000.
+O aplicativo estará disponível em http://localhost:3000.
 
 Como Configurar as Credenciais
 
 As credenciais (como chaves de API e senhas) são armazenadas no arquivo config/credentials.yml.enc, que é criptografado. Você pode acessar e editar as credenciais com o seguinte comando:
 
-EDITOR="vim" rails credentials:edit
+```bash
+  EDITOR="vim" rails credentials:edit
+```
 
 Lembre-se de que a chave mestra master.key deve ser mantida em segredo. Você pode configurá-la como uma variável de ambiente em seu ambiente de produção, como no Render.
 Deploy
@@ -89,7 +102,9 @@ Testes
 
 A aplicação usa RSpec para testes automatizados. Para rodar os testes, use o seguinte comando:
 
-bundle exec rspec
+```bash
+  bundle exec rspec
+```
 
 Contribuindo
 
