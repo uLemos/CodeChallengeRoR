@@ -46,10 +46,14 @@ jobs:
         run: |
           gem install bundler
           bundle install
+          yarn install
 
       - name: Set up database
         run: |
           bundle exec rails db:prepare
+
+      - name: Precompile assets
+        run: bundle exec rails assets:precompile RAILS_ENV=test
 
       - name: Run tests
         run: bundle exec rspec
