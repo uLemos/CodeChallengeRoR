@@ -53,6 +53,8 @@ group :development, :test do
   gem "rspec-rails"
 
   gem "factory_bot_rails"
+
+  gem "dotenv-rails"
 end
 
 group :development do
@@ -77,7 +79,5 @@ gem "tailwindcss-rails"
 gem "foreman"
 
 gem "kaminari"
-
-gem "dotenv-rails"
 
 gem "warden", "~> 1.2"
