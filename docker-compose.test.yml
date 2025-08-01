@@ -1,43 +1,19 @@
-# docker-compose.test.yml
 services:
-  web:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails db:create db:migrate RAILS_ENV=test && ./bin/dev"
-    tty: true
-    volumes:
-      - ".:/rails"
-      - node_modules:/rails/node_modules
-    ports:
-      - "3001:3000" 
-    environment:
-      - RAILS_ENV=test
-    depends_on:
-      - db
-    env_file:
-      - .env
-    networks:
-      - news_aggregator_network
-  
   db:
-    image: postgres:latest
-    volumes:
-      - "postgres-data:/var/lib/postgresql/data"
+    image: postgres:13
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: ${POSTGRES_TEST_DB}
-      POSTGRES_HOST: localhost
+      POSTGRES_DB: ${POSTGRES_DB}
     ports:
       - "5434:5432"  
-    networks:
-      - news_aggregator_network
 
-volumes:
-  postgres-data:
-  node_modules:
-
-networks:
-  news_aggregator_network:
-    driver: bridge
+  web:
+    build: .
+    command: tail -f /dev/null 
+    depends_on:
+      - db
+    env_file:
+      - .env.test
+    volumes:
+      - .:/app

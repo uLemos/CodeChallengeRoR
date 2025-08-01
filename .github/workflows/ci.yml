@@ -19,8 +19,8 @@ jobs:
         ports:
           - "5432:5432"
         env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: user
+          POSTGRES_PASSWORD: password
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -29,7 +29,7 @@ jobs:
 
     env:
       RAILS_ENV: test
-      DATABASE_URL: postgres://postgres:postgres@localhost:5432/news_aggregator_test
+      DATABASE_URL: postgres://user:password@localhost:5432/news_aggregator_test
 
     steps:
       - uses: actions/checkout@v3
@@ -38,6 +38,9 @@ jobs:
         with:
           ruby-version: '3.2.3'
           bundler-cache: true
+      
+      - name: Load .env.test
+        run: cp .env.test .env
 
       - name: Install dependencies
         run: |
@@ -46,7 +49,7 @@ jobs:
 
       - name: Set up database
         run: |
-          bundle exec rails db:create db:schema:load
+          bundle exec rails db:prepare
 
       - name: Run tests
         run: bundle exec rspec
