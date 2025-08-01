@@ -5,8 +5,8 @@ on:
     branches:
       - main
       - dev
-    tags:
-      - 'v*'
+    # tags:
+    #   - 'v*'
 
 jobs:
   test:
@@ -101,8 +101,8 @@ jobs:
           api_key: ${{ secrets.RENDER_API_KEY }}
           clear_cache: false 
           wait_deploy: true
-          github_deployment: true
-          deployment_environment: 'production'
+          # github_deployment: true
+          deployment_environment: 'development'
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
 
