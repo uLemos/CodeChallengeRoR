@@ -54,9 +54,9 @@ group :development, :test do
 
   gem "factory_bot_rails"
 
-  gem "dotenv", "~> 2.7"
+  gem "dotenv", "~> 3.1"
 
-  gem "dotenv-rails", "~> 2.8"
+  gem "dotenv-rails", "~> 3.1"
 end
 
 group :development do
