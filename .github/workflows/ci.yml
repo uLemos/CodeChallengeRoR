@@ -1,4 +1,4 @@
-name: CI/CD - Rails App
+name: CI
 
 on:
   push:
@@ -39,8 +39,14 @@ jobs:
           ruby-version: '3.2.3'
           bundler-cache: true
       
-      - name: Load .env.test
-        run: cp .env.test .env
+      - name: Create .env.test file
+        run: |
+          echo "RAILS_ENV=test" >> .env.test
+          echo "POSTGRES_USER=user" >> .env.test
+          echo "POSTGRES_PASSWORD=password" >> .env.test
+          echo "POSTGRES_DB=news_aggregator_development" >> .env.test
+          echo "POSTGRES_TEST_DB=news_aggregator_test" >> .env.test
+          echo "POSTGRES_HOST=db" >> .env.test
 
       - name: Install dependencies
         run: |
