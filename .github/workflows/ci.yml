@@ -49,7 +49,7 @@ jobs:
 
       - name: Setup DB
         run: |
-          bundle exec rails db:create db:migrate RAILS_ENV=test
+          docker-compose run --rm web bundle exec rails db:create db:migrate RAILS_ENV=test
 
       - name: Run tests
         env:
