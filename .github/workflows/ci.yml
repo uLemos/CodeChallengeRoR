@@ -32,7 +32,7 @@ jobs:
       DATABASE_URL: postgres://user:password@localhost:5432/news_aggregator_test
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - uses: ruby/setup-ruby@v1
         with:
@@ -71,7 +71,7 @@ jobs:
     needs: test 
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
@@ -95,7 +95,7 @@ jobs:
     needs: docker_build 
     
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       # Set up Ruby and Bundler for the deployment job
       - name: Set up Ruby for deploy
