@@ -104,3 +104,7 @@ jobs:
           # github_deployment: true
           deployment_environment: 'development'
           github_token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Run migrations in production
+        run: |
+          bundle exec rails db:migrate RAILS_ENV=production
