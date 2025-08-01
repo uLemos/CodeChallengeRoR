@@ -36,6 +36,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Set up Docker Compose
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y docker-compose
+
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
@@ -47,7 +52,11 @@ jobs:
         with:
           node-version: 18
 
-      - name: Setup DB
+      - name: Setup DB (Activating DB and Web Service)
+        run: |
+          docker-compose -f docker-compose.yml -f docker-compose.test.yml up -d
+
+      - name: Run migrations
         run: |
           docker-compose run --rm web bundle exec rails db:create db:migrate RAILS_ENV=test
 
@@ -56,7 +65,7 @@ jobs:
           RAILS_ENV: test
           DATABASE_URL: postgres://user:password@db:5432/news_aggregator_test
           NEWS_API_KEY: ${{ secrets.NEWS_API_KEY }}
-        run: bundle exec rspec
+        run: docker-compose run --rm web bundle exec rspec
 
       - name: Run Brakeman security scan
         run: bundle exec brakeman --no-pager
