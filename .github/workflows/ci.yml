@@ -81,10 +81,10 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/news_aggregator:latest .
+          docker build -t ulemooss/news_aggregator:latest .
 
       - name: Push Docker image
         run: |
-          docker push ${{ secrets.DOCKER_USERNAME }}/news_aggregator:latest
+          docker push ulemooss/news_aggregator:latest
 
 
