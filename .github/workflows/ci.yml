@@ -38,7 +38,8 @@ jobs:
         with:
           ruby-version: '3.2.3'
           bundler-cache: true
-      
+
+      #Necessário forçar para evitar conflitos      
       - name: Create .env.test file
         run: |
           echo "RAILS_ENV=test" >> .env.test
@@ -85,5 +86,5 @@ jobs:
       - name: Push Docker image
         run: |
           docker push ${{ secrets.DOCKER_USERNAME }}/news_aggregator:latest
-          
+
 
