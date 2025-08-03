@@ -6,8 +6,8 @@ on:
       - prod
       - developer
       - test
-    tags:
-      - 'v*'
+    # tags:
+    #   - 'v*'
 
 jobs:
   test:
