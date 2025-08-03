@@ -51,7 +51,7 @@ RUN yarn install --frozen-lockfile
 COPY . .
 
 # Run CSS build with PostCSS + Tailwind
-RUN npx postcss app/assets/stylesheets/application.css -o app/assets/builds/application.css
+RUN npx postcss app/assets/stylesheets/application.css -o app/assets/builds/tailwind.css
     
 # Expose the Rails port (3000) to make the application accessible
 EXPOSE 3000
