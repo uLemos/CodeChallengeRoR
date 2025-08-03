@@ -28,7 +28,7 @@
     <link href="https://cdn.jsdelivr.net/npm/flowbite@1.5.1/dist/flowbite.min.css" rel="stylesheet">
 
     <%# Includes all stylesheet files in app/assets/stylesheets %>
-    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
@@ -142,7 +142,7 @@
     <!-- Alpine.js, necessário para interação do Flowbite -->
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
 
-    <main class="container mx-auto mt-28 px-5 flex justify-center items-center">
+    <main class="container mx-auto mt-28 p-6 flex justify-center items-center">
       <%= yield %>
     </main>
     
