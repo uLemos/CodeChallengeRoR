@@ -123,5 +123,5 @@ jobs:
       
       # - name: Run migrations in production
       #   run: |
-      #     bundle exec rails db:migrate RAILS_ENV=production
+      #     bundle exec rails db:migrate RAILS_ENV=production -- Deixei chumbado no Docker Command do Render
       #     echo "✨ Migrations completed successfully"
