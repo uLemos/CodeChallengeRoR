@@ -49,6 +49,9 @@ RUN yarn install --frozen-lockfile
 
 # Copy the application code into the container
 COPY . .
+
+# Run CSS build with PostCSS + Tailwind
+RUN npx postcss app/assets/stylesheets/application.css -o app/assets/builds/application.css
     
 # Expose the Rails port (3000) to make the application accessible
 EXPOSE 3000
