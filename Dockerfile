@@ -39,14 +39,9 @@ RUN curl -sL https://github.com/nodenv/node-build/archive/master.tar.gz | tar xz
 
 # Install the gems
 COPY Gemfile Gemfile.lock ./
-COPY Gemfile Gemfile.lock ./
-RUN if [ "$RAILS_ENV" = "production" ]; then \
-      bundle config set deployment 'true' && \
-      bundle config set without 'development test' && \
-      bundle install --jobs 4 --retry 3 ; \
-    else \
-      bundle install; \
-    fi
+ARG RAILS_ENV=development
+
+RUN bundle install --jobs 4 --retry 3
 
 # Install Yarn dependencies
 COPY package.json yarn.lock ./
@@ -54,17 +49,11 @@ RUN yarn install --frozen-lockfile
 
 # Copy the application code into the container
 COPY . .
-
-# Precompile from assets 
-RUN if [ "$RAILS_ENV" = "production" ]; then \
-      bundle exec rake assets:precompile; \
-    fi
-
+    
 # Expose the Rails port (3000) to make the application accessible
 EXPOSE 3000
 
 # Set the default environment for Rails
-ARG RAILS_ENV=development
 ENV RAILS_ENV=${RAILS_ENV}
 
 # Run the Rails server, make sure to wait for the database before starting

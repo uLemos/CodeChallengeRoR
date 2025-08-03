@@ -110,6 +110,15 @@ jobs:
           bundle install --deployment --without development test
           yarn install
 
+      - name: Run migrations before deploy
+        run: |
+          docker run --rm \
+            -e DATABASE_URL=${{ secrets.DATABASE_URL }} \
+            -e RAILS_ENV=${{ secrets.RAILS_ENV }} \
+            -e RAILS_MASTER_KEY=${{ secrets.RAILS_MASTER_KEY }} \
+            ${{ secrets.DOCKER_USERNAME }}/news_aggregator:latest \
+            bundle exec rake db:migrate && bundle exec rake assets:precompile
+
       - name: Deploy to Render
         uses: JorgeLNJunior/render-deploy@v1.4.5
         with:
@@ -120,8 +129,3 @@ jobs:
           # github_deployment: true
           deployment_environment: 'production'
           github_token: ${{ secrets.GITHUB_TOKEN }}
-      
-      - name: Run migrations in production 
-        run: |
-          bundle exec rake db:migrate && bundle exec rake assets:precompile
-          echo "✨ Migrations completed successfully"
