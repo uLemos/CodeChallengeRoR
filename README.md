@@ -43,15 +43,15 @@ Instale as dependências:
 Se você está utilizando Docker, você pode rodar os containers com o comando:
 
 ```bash
-  docker-compose up
+docker-compose up
 ```
 
 Se preferir rodar sem Docker, instale as dependências normalmente:
 
 ```bash
-  gem install bundler
-  bundle install
-  yarn install
+gem install bundler
+bundle install
+yarn install
 ```
 
 Configure o Banco de Dados:
@@ -59,13 +59,13 @@ Configure o Banco de Dados:
 Configure as variáveis de ambiente necessárias (caso use Docker, isso pode já estar configurado). Para configurar localmente:
 
 ```bash
-  export DATABASE_URL=postgres://username:password@localhost:5432/news_aggregator_development
+export DATABASE_URL=postgres://username:password@localhost:5432/news_aggregator_development
 ```
 Em seguida, crie e migre o banco de dados:
 
 ```bash
-  rails db:create
-  rails db:migrate
+rails db:create
+rails db:migrate
 ```
 
 
@@ -74,7 +74,7 @@ Inicie o Servidor:
 Para rodar o servidor Rails localmente, use o comando:
 
 ```bash
-  rails s
+rails s
 ```
 
 O aplicativo estará disponível em http://localhost:3000.
@@ -84,7 +84,7 @@ Como Configurar as Credenciais
 As credenciais (como chaves de API e senhas) são armazenadas no arquivo config/credentials.yml.enc, que é criptografado. Você pode acessar e editar as credenciais com o seguinte comando:
 
 ```bash
-  EDITOR="vim" rails credentials:edit
+EDITOR="vim" rails credentials:edit
 ```
 
 Lembre-se de que a chave mestra master.key deve ser mantida em segredo. Você pode configurá-la como uma variável de ambiente em seu ambiente de produção, como no Render.
@@ -92,33 +92,33 @@ Deploy
 
 O aplicativo está configurado para deploy automático no Render. Ele utiliza o Docker para a construção da imagem e o GitHub Actions para os processos de CI/CD. Para configurar o deploy:
 
-    Certifique-se de que as credenciais no Render estão configuradas corretamente.
+Certifique-se de que as credenciais no Render estão configuradas corretamente.
 
-    O Render usará o Dockerfile localizado na raiz do projeto para construir a imagem.
+O Render usará o Dockerfile localizado na raiz do projeto para construir a imagem.
 
-    Ao fazer push para a branch main ou dev, o Render irá automaticamente iniciar o processo de deploy e migrar o banco de dados.
+Ao fazer push para a branch main ou dev, o Render irá automaticamente iniciar o processo de deploy e migrar o banco de dados.
 
 Testes
 
 A aplicação usa RSpec para testes automatizados. Para rodar os testes, use o seguinte comando:
 
 ```bash
-  bundle exec rspec
+bundle exec rspec
 ```
 
 Contribuindo
 
 Sinta-se à vontade para contribuir para o projeto! Se você tiver alguma sugestão ou correção, basta fazer um fork do repositório, criar uma branch com sua alteração, e submeter um pull request.
 
-    Fork o projeto.
+Fork o projeto.
 
-    Crie uma nova branch (git checkout -b minha-nova-feature).
+Crie uma nova branch (git checkout -b minha-nova-feature).
 
-    Faça suas alterações e commite (git commit -am 'Adicionando nova feature').
+Faça suas alterações e commite (git commit -am 'Adicionando nova feature').
 
-    Push para sua branch (git push origin minha-nova-feature).
+Push para sua branch (git push origin minha-nova-feature).
 
-    Abra um Pull Request.
+Abra um Pull Request.
 
 Licença
 
