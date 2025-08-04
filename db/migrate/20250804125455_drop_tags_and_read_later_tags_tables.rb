@@ -1,4 +1,4 @@
-class c; < ActiveRecord::Migration[7.1]
+class DropTagsAndReadLaterTagsTables < ActiveRecord::Migration[7.1]
   def change
     drop_table :article_tags, if_exists: true
     drop_table :read_later_tags, if_exists: true
