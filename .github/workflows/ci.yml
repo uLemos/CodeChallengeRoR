@@ -5,8 +5,9 @@ on:
     branches:
       - prod
       - developer
-    tags:
-      - 'v*'
+      # - test
+    # tags:
+    #   - 'v*'
 
 jobs:
   test:

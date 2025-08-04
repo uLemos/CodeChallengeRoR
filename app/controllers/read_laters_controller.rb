@@ -18,6 +18,15 @@ class ReadLatersController < ApplicationController
     redirect_to search_news_index_path(query: params[:query])
   end
 
+  def update
+    @read_later = ReadLater.find(params[:id])
+    if @read_later.update(read_later_params)
+      redirect_to read_later_news_index_path, notice: "Tag updated successfully."
+    else
+      redirect_to read_later_news_index_path, alert: "Failed to update tag."
+    end
+  end
+
   def destroy
     @read_later = current_user.read_laters.find(params[:id])
 
@@ -28,5 +37,11 @@ class ReadLatersController < ApplicationController
     end
 
     redirect_to read_later_news_index_path
+  end
+
+  private
+
+  def read_later_params
+    params.require(:read_later).permit(:tag_id)
   end
 end
