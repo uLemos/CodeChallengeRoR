@@ -111,7 +111,7 @@ jobs:
           bundle install --deployment --without development test
           yarn install
 
-      - name: Run migrations before deploy
+      - name: Run migrations and precompile before deploy
         run: |
           docker run --rm \
             -e DATABASE_URL=${{ secrets.DATABASE_URL }} \

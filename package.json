@@ -8,8 +8,8 @@
     "lib": "lib"
   },
   "scripts": {
-    "build": "postcss app/assets/stylesheets/application.tailwind.css -o public/stylesheets/application.css",
-    "watch": "postcss app/assets/stylesheets/application.tailwind.css -o public/stylesheets/application.css --watch"
+    "build": "postcss app/assets/stylesheets/application.css -o public/stylesheets/application.css",
+    "watch": "postcss app/assets/stylesheets/application.css -o public/stylesheets/application.css --watch"
   },
   "repository": {
     "type": "git",
@@ -23,8 +23,9 @@
   },
   "homepage": "https://github.com/uLemos/CodeChallengeRoR#readme",
   "dependencies": {
-    "tailwindcss": "^4.1.11",
+    "autoprefixer": "^10.3.1",
     "postcss": "^8.3.6",
-    "autoprefixer": "^10.3.1"
+    "tailwindcss": "^4.1.11",
+    "postcss-cli": "^11.0.1"
   }
 }
