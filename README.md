@@ -29,63 +29,262 @@ Antes de rodar o projeto, você precisará dos seguintes itens instalados:
 - [Yarn](https://yarnpkg.com/)
 - [Docker](https://www.docker.com/) (se for usar Docker para desenvolvimento local)
 
-## Como Rodar Localmente
+## Como Configurar o Arquivo .env
 
-1. **Clone o repositório**:
-
-   ```bash
-   git clone https://github.com/uLemos/CodeChallengeRoR.git
-   cd CodeChallengeRoR
-   ```
-
-Instale as dependências:
-
-Se você está utilizando Docker, você pode rodar os containers com o comando:
+1. Crie um arquivo `.env` na raiz do projeto (se ele ainda não existir).
+2. Preencha as variáveis de ambiente com os valores apropriados, conforme o exemplo abaixo:
 
 ```bash
-  docker-compose up
+POSTGRES_USER=user
+POSTGRES_PASSWORD=password
+POSTGRES_DB=news_aggregator_development
+POSTGRES_TEST_DB=news_aggregator_test
+NEWS_API_KEY=83dec482cba044c3955096e7ab36ac63
 ```
+## Caso necessário acesse o NewsAPI
 
-Se preferir rodar sem Docker, instale as dependências normalmente:
+https://newsapi.org/
+
+Se for necessário, adquira uma key e substitua a NEWS_API_KEY acima.
+1. Instalar o Ruby (versão 3.2.3)
+
+O Ruby é a linguagem utilizada pelo Rails, e é essencial para rodar a aplicação.
+Windows:
+
+    Passo 1: Acesse o RubyInstaller.
+
+    Passo 2: Baixe a versão Ruby+Devkit 3.2.3.
+
+    Passo 3: Execute o instalador e siga as instruções.
+
+    Passo 4: Após a instalação, abra o terminal e verifique a versão do Ruby:
 
 ```bash
-  gem install bundler
-  bundle install
-  yarn install
+ruby -v
 ```
 
-Configure o Banco de Dados:
+A saída deve ser:
 
-Configure as variáveis de ambiente necessárias (caso use Docker, isso pode já estar configurado). Para configurar localmente:
+    ruby 3.2.3p0 (2023-03-30 revision 76b17f3c78) [x64-mingw32]
+
+macOS:
+
+    Passo 1: Abra o terminal e instale o Homebrew, se ainda não tiver:
 
 ```bash
-  export DATABASE_URL=postgres://username:password@localhost:5432/news_aggregator_development
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
-Em seguida, crie e migre o banco de dados:
+
+Passo 2: Instale o Ruby 3.2.3 com Homebrew:
 
 ```bash
-  rails db:create
-  rails db:migrate
+brew install ruby@3.2
 ```
 
-
-Inicie o Servidor:
-
-Para rodar o servidor Rails localmente, use o comando:
+Passo 3: Verifique a instalação do Ruby:
 
 ```bash
-  rails s
+    ruby -v
 ```
 
-O aplicativo estará disponível em http://localhost:3000.
+Linux (Ubuntu/Debian):
 
-Como Configurar as Credenciais
-
-As credenciais (como chaves de API e senhas) são armazenadas no arquivo config/credentials.yml.enc, que é criptografado. Você pode acessar e editar as credenciais com o seguinte comando:
+    Passo 1: Execute o seguinte comando para instalar o Ruby:
 
 ```bash
-  EDITOR="vim" rails credentials:edit
+sudo apt update
+sudo apt install ruby-full
 ```
+
+Passo 2: Verifique a versão do Ruby:
+
+```bash
+    ruby -v
+```
+
+2. Instalar o Rails (versão 7.1)
+
+O Rails é o framework utilizado para a aplicação. Você precisa instalar a versão 7.1.
+
+    Passo 1: Instale o Rails com o Ruby:
+
+```bash
+gem install rails -v 7.1
+```
+
+Passo 2: Verifique a instalação do Rails:
+
+```bash
+rails -v
+```
+
+A saída deve ser:
+
+```bash
+    Rails 7.1.x
+```
+
+3. Instalar o PostgreSQL (versão 15)
+
+O PostgreSQL é o banco de dados utilizado pela aplicação. Precisamos da versão 15.
+Windows:
+
+    Passo 1: Baixe o instalador do PostgreSQL aqui.
+
+    Passo 2: Execute o instalador e siga as instruções.
+
+    Passo 3: Durante a instalação, anote a senha configurada para o superusuário postgres.
+
+macOS (com Homebrew):
+
+    Passo 1: Instale o PostgreSQL:
+
+```bash
+brew install postgresql@15
+```
+
+Passo 2: Verifique a versão:
+
+```bash
+psql --version
+```
+
+A saída deve ser algo como:
+
+```bash
+    psql (PostgreSQL) 15.x
+```
+
+Linux (Ubuntu/Debian):
+
+    Passo 1: Instale o PostgreSQL versão 15:
+
+```bash
+sudo apt update
+sudo apt install postgresql-15
+```
+
+Passo 2: Verifique a versão:
+
+```bash
+    psql --version
+```
+
+4. Instalar o Yarn (versão 1.22.x)
+
+O Yarn é o gerenciador de pacotes JavaScript necessário para o gerenciamento de dependências do frontend.
+Windows:
+
+    Passo 1: Baixe o Yarn aqui.
+
+    Passo 2: Siga as instruções do instalador.
+
+macOS (com Homebrew):
+
+    Passo 1: Instale o Yarn:
+
+```bash
+brew install yarn
+```
+
+Passo 2: Verifique a versão:
+
+```bash
+    yarn -v
+```
+
+Linux (Ubuntu/Debian):
+
+    Passo 1: Instale o Yarn:
+
+```bash
+sudo apt update
+sudo apt install yarn
+```
+
+Passo 2: Verifique a versão:
+
+```bash
+    yarn -v
+```
+
+5. Instalar o Docker (opcional, mas recomendado)
+
+O Docker é uma ótima maneira de rodar o projeto em um ambiente isolado e garantir que todos os desenvolvedores tenham a mesma configuração.
+
+    Passo 1: Baixe o Docker Desktop para Windows ou macOS aqui.
+
+    Passo 2: No Linux, siga as instruções de instalação aqui.
+
+    Passo 3: Verifique a instalação do Docker:
+
+```bash
+    docker --version
+    docker-compose --version
+```
+
+6. Clonar o Repositório
+
+Agora, que todas as dependências estão instaladas, clone o repositório do projeto:
+
+```bash
+git clone https://github.com/uLemos/CodeChallengeRoR.git
+cd CodeChallengeRoR
+```
+
+7. Configuração do Docker (opcional)
+
+Se você decidir usar Docker, basta rodar o comando abaixo para criar os containers necessários:
+
+```bash
+docker-compose up
+```
+
+Esse comando irá configurar automaticamente o banco de dados e rodar a aplicação. A aplicação estará acessível em http://localhost:3000.
+8. Configuração Manual sem Docker
+
+Caso prefira rodar a aplicação localmente sem Docker:
+
+    Instalar as dependências com Bundler:
+
+    No diretório do projeto, instale as dependências do Ruby com:
+
+```bash
+bundle install
+```
+
+Instalar as dependências do frontend com Yarn:
+
+```bash
+yarn install
+```
+
+Configurar o banco de dados:
+
+Crie o banco de dados e rode as migrações:
+
+```bash
+rails db:create
+rails db:migrate
+```
+
+Iniciar o Servidor:
+
+Para rodar a aplicação localmente, use o comando:
+
+```bash
+    rails s
+```
+
+    A aplicação estará acessível em http://localhost:3000.
+
+9. Configuração de Credenciais
+
+As credenciais (como chaves de API e senhas) são armazenadas no arquivo config/credentials.yml.enc, que é criptografado. Para editar as credenciais, use o seguinte comando:
+
+EDITOR="vim" rails credentials:edit
+
+Lembre-se de que a chave mestra master.key deve ser mantida em segredo. Você pode configurá-la como uma variável de ambiente no seu ambiente de produção, como no Render.
 
 Lembre-se de que a chave mestra master.key deve ser mantida em segredo. Você pode configurá-la como uma variável de ambiente em seu ambiente de produção, como no Render.
 Deploy
