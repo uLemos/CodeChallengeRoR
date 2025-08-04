@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_07_31_154543) do
+ActiveRecord::Schema[7.1].define(version: 2025_08_04_130557) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -31,6 +31,21 @@ ActiveRecord::Schema[7.1].define(version: 2025_07_31_154543) do
     t.index ["user_id"], name: "index_read_laters_on_user_id"
   end
 
+  create_table "read_laters_tags", id: false, force: :cascade do |t|
+    t.bigint "read_later_id", null: false
+    t.bigint "tag_id", null: false
+    t.index ["read_later_id", "tag_id"], name: "index_read_laters_tags_on_read_later_id_and_tag_id"
+    t.index ["tag_id", "read_later_id"], name: "index_read_laters_tags_on_tag_id_and_read_later_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_tags_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -44,4 +59,5 @@ ActiveRecord::Schema[7.1].define(version: 2025_07_31_154543) do
   end
 
   add_foreign_key "read_laters", "users", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "tags", "users"
 end
