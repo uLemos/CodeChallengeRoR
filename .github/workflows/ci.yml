@@ -3,10 +3,10 @@ name: CI/CD
 on:
   push:
     branches:
-      - prod
+      # - prod
       - developer
-    tags:
-      - 'v*'
+    # tags:
+    #   - 'v*'
 
 jobs:
   test:
