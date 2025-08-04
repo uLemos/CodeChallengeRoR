@@ -242,6 +242,12 @@ cd CodeChallengeRoR
 ./configure_permissions.sh
 ```
 
+**Rode o script de compilação de assets:**
+
+```bash
+./setup.sh
+```
+
 ## Configuração do Docker (opcional)
 
 Se você decidir usar Docker, basta rodar o comando abaixo para criar os containers necessários:
