@@ -5,7 +5,7 @@ on:
     branches:
       - prod
       - developer
-      - test
+      # - test
     # tags:
     #   - 'v*'
 

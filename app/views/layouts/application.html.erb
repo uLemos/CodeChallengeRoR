@@ -59,6 +59,8 @@
                         <%= link_to "← Back to Search", search_news_index_path, class: "block py-2 px-3 text-gray-800 dark:text-white hover:opacity-25 hover:text-gray-500 cursor-pointer" %>
                       <% elsif controller_name == "news" && action_name == "search" %>
                         <%= link_to "Tags", tags_path, class: "block py-2 px-3 text-gray-800 dark:text-white hover:opacity-25 hover:text-gray-500 cursor-pointer" %>
+                      <% elsif controller_name == "read_laters" && action_name == "read_later" %>
+                        <%= link_to "Tags", tags_path, class: "block py-2 px-3 text-gray-800 dark:text-white hover:opacity-25 hover:text-gray-500 cursor-pointer" %>
                       <% end %>
                     </li>
 
@@ -87,7 +89,7 @@
               </ul>
             </div>
 
-          </div>
+            </div>
 
           <!-- Menu de Navegação em Dispositivos Móveis -->
           <div id="mobile-menu" class="sm:hidden hidden flex-col absolute top-0 left-0 w-full bg-white shadow-lg border-t border-gray-200 z-10">
@@ -98,6 +100,8 @@
                     <% if controller_name == "tags" && action_name == "index" %>
                       <%= link_to "← Back to Search", search_news_index_path, class: "block py-2 px-3 text-gray-800 dark:text-white hover:opacity-25 hover:text-gray-500 cursor-pointer" %>
                     <% elsif controller_name == "news" && action_name == "search" %>
+                      <%= link_to "Tags", tags_path, class: "block py-2 px-3 text-gray-800 dark:text-white hover:opacity-25 hover:text-gray-500 cursor-pointer" %>
+                    <% elsif controller_name == "read_laters" && action_name == "read_later" %>
                       <%= link_to "Tags", tags_path, class: "block py-2 px-3 text-gray-800 dark:text-white hover:opacity-25 hover:text-gray-500 cursor-pointer" %>
                     <% end %>
                   </li>
@@ -123,7 +127,7 @@
                   </li>
               <% end %>
             </ul>
-          </div>
+        </div>
       </nav>
     </header>
     

@@ -9,7 +9,7 @@ Rails.application.routes.draw do
       get "read_later", action: :read_later
     end
   end
-  resources :read_laters, only: [ :create, :destroy ]
+  resources :read_laters, only: [ :create, :update, :destroy ]
   resources :tags, only: [:index, :create, :edit, :update, :destroy]
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

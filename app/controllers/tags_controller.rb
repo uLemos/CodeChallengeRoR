@@ -36,6 +36,8 @@ class TagsController < ApplicationController
 
   def destroy
     @tag = current_user.tags.find(params[:id])
+    @tag.read_laters.update_all(tag_id: nil)
+
     if @tag.destroy
       flash[:notice] = "Tag deleted"
     else
