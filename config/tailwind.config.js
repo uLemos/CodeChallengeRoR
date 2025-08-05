@@ -1,11 +1,11 @@
 module.exports = {
   content: [
-    './public/*.html', 
-    './app/helpers/**/*.rb', 
-    './app/javascript/**/*.js', 
-    './app/views/**/*.{erb,haml,html,slim}', 
-    './app/assets/stylesheets/**/*.{css}', 
-    './config/**/*.rb', 
+    './app/views/**/*.{erb,html,haml,slim}',
+    './app/helpers/**/*.rb',
+    './app/javascript/**/*.js',
+    './app/assets/stylesheets/**/*.{css}',
+    './config/**/*.rb',
+    './public/**/*.html', 
   ],
   theme: {
     extend: {

@@ -1,13 +1,13 @@
 #!/bin/bash
 
-# Habilitar o cache de desenvolvimento
+# Enable development caching
 bin/rails dev:cache
 
-# Pré-compilar os assets
+# Pre-compile the assets
 bin/rails assets:precompile
 
-# Limpar os assets antigos
+# Clean the old assets
 bin/rails assets:clobber
 
-# Instalar o Tailwind CSS
+# Install Tailwind CSS
 rails tailwindcss:install
