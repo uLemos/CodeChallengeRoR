@@ -21,7 +21,7 @@ Este é um agregador de notícias desenvolvido com Ruby on Rails, onde os usuár
 
 ## Pré-requisitos
 
-Antes de rodar o projeto, você precisará dos seguintes itens instalados:
+**Antes de rodar o projeto, você precisará dos seguintes itens instalados:**
 
 - [Ruby](https://www.ruby-lang.org/en/documentation/) (versão 3.2.3)
 - [Rails](https://rubyonrails.org/) (versão 7.1)
@@ -29,63 +29,292 @@ Antes de rodar o projeto, você precisará dos seguintes itens instalados:
 - [Yarn](https://yarnpkg.com/)
 - [Docker](https://www.docker.com/) (se for usar Docker para desenvolvimento local)
 
-## Como Rodar Localmente
+## Como Configurar o Arquivo .env
 
-1. **Clone o repositório**:
+- Crie um arquivo `.env` na raiz do projeto (se ele ainda não existir).
+- Preencha as variáveis de ambiente com os valores apropriados, conforme o exemplo abaixo:
 
-   ```bash
-   git clone https://github.com/uLemos/CodeChallengeRoR.git
-   cd CodeChallengeRoR
-   ```
+```bash
+POSTGRES_USER=user
+POSTGRES_PASSWORD=password
+POSTGRES_DB=news_aggregator_development
+POSTGRES_TEST_DB=news_aggregator_test
+NEWS_API_KEY=83dec482cba044c3955096e7ab36ac63
+```
+## Caso necessário acesse o NewsAPI
 
-Instale as dependências:
+https://newsapi.org/
 
-Se você está utilizando Docker, você pode rodar os containers com o comando:
+Se for necessário, adquira uma key e substitua a NEWS_API_KEY acima.
+## Instalar o Ruby (versão 3.2.3)
+
+O Ruby é a linguagem utilizada pelo Rails, e é essencial para rodar a aplicação.
+### Windows:
+
+- 1 Acesse o RubyInstaller.
+
+- 2 Baixe a versão Ruby+Devkit 3.2.3.
+
+- 3 Execute o instalador e siga as instruções.
+
+- 4 Após a instalação, abra o terminal e verifique a versão do Ruby:
+
+```bash
+ruby -v
+```
+
+**A saída deve ser:**
+
+```bash
+ruby 3.2.3p0 (2023-03-30 revision 76b17f3c78) [x64-mingw32]
+```
+
+### macOS:
+
+- 1 Abra o terminal e instale o Homebrew, se ainda não tiver:
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+- 2 Instale o Ruby 3.2.3 com Homebrew:
+
+```bash
+brew install ruby@3.2
+```
+
+- 3 Verifique a instalação do Ruby:
+
+```bash
+ruby -v
+```
+
+### Linux (Ubuntu/Debian):
+
+- 1 Execute o seguinte comando para instalar o Ruby:
+
+```bash
+sudo apt update
+sudo apt install ruby-full
+```
+
+- 2 Verifique a versão do Ruby:
+
+```bash
+ruby -v
+```
+
+## Instalar o Rails (versão 7.1)
+
+O Rails é o framework utilizado para a aplicação. Você precisa instalar a versão 7.1.
+
+- 1 Instale o Rails com o Ruby:
+
+```bash
+gem install rails -v 7.1
+```
+
+- 2 Verifique a instalação do Rails:
+
+```bash
+rails -v
+```
+
+**A saída deve ser:**
+
+```bash
+Rails 7.1.x
+```
+
+## Instalar o PostgreSQL (versão 15)
+
+O PostgreSQL é o banco de dados utilizado pela aplicação. Precisamos da versão 15.
+### Windows:
+
+- 1 Baixe o instalador do PostgreSQL aqui.
+
+- 2 Execute o instalador e siga as instruções.
+
+- 3 Durante a instalação, anote a senha configurada para o superusuário postgres.
+
+### macOS (com Homebrew):
+
+- 1 Instale o PostgreSQL:
+
+```bash
+brew install postgresql@15
+```
+
+- 2 Verifique a versão:
+
+```bash
+psql --version
+```
+
+**A saída deve ser algo como:**
+
+```bash
+    psql (PostgreSQL) 15.x
+```
+
+### Linux (Ubuntu/Debian):
+
+- 1 Instale o PostgreSQL versão 15:
+
+```bash
+sudo apt update
+sudo apt install postgresql-15
+```
+
+- 2 Verifique a versão:
+
+```bash
+    psql --version
+```
+
+## Instalar o Yarn (versão 1.22.x)
+
+O Yarn é o gerenciador de pacotes JavaScript necessário para o gerenciamento de dependências do frontend.
+### Windows:
+
+- 1 Baixe o Yarn aqui.
+
+- 2 Siga as instruções do instalador.
+
+### macOS (com Homebrew):
+
+- 1 Instale o Yarn:
+
+```bash
+brew install yarn
+```
+
+- 2 Verifique a versão:
+
+```bash
+    yarn -v
+```
+
+### Linux (Ubuntu/Debian):
+
+- 1 Instale o Yarn:
+
+```bash
+sudo apt update
+sudo apt install yarn
+```
+
+- 2 Verifique a versão:
+
+```bash
+    yarn -v
+```
+
+## Instalar o Docker (opcional, mas recomendado)
+
+O Docker é uma ótima maneira de rodar o projeto em um ambiente isolado e garantir que todos os desenvolvedores tenham a mesma configuração.
+
+- 1 Baixe o Docker Desktop para Windows ou macOS aqui.
+
+- 2 No Linux, siga as instruções de instalação aqui.
+
+- 3 Verifique a instalação do Docker:
+
+```bash
+    docker --version
+    docker-compose --version
+```
+
+## Clonar o Repositório
+
+Agora, que todas as dependências estão instaladas, clone o repositório do projeto:
+
+```bash
+git clone https://github.com/uLemos/CodeChallengeRoR.git
+cd CodeChallengeRoR
+```
+
+### Após clonar o repositório, você pode rodar o script `setup.sh` para garantir que todas as permissões e configurações estejam corretas. Isso garante que a aplicação tenha permissão para criar arquivos temporários necessários para o servidor Rails.
+
+**Rode o script de configuração:**
+
+```bash
+./configure_permissions.sh
+```
+
+**Rode o script de compilação de assets:**
+
+```bash
+./setup.sh
+```
+
+## Configuração do Docker (opcional)
+
+Se você decidir usar Docker, basta rodar o comando abaixo para criar os containers necessários:
 
 ```bash
 docker-compose up
 ```
 
-Se preferir rodar sem Docker, instale as dependências normalmente:
+Esse comando irá configurar automaticamente o banco de dados e rodar a aplicação. A aplicação estará acessível em http://localhost:3000.
+## Configuração Manual sem Docker
+
+Caso prefira rodar a aplicação localmente sem Docker:
+
+    Instalar as dependências com Bundler:
+
+    No diretório do projeto, instale as dependências do Ruby com:
 
 ```bash
-gem install bundler
 bundle install
+```
+
+Instalar as dependências do frontend com Yarn:
+
+```bash
 yarn install
 ```
 
-Configure o Banco de Dados:
+Configurar o banco de dados:
 
-Configure as variáveis de ambiente necessárias (caso use Docker, isso pode já estar configurado). Para configurar localmente:
-
-```bash
-export DATABASE_URL=postgres://username:password@localhost:5432/news_aggregator_development
-```
-Em seguida, crie e migre o banco de dados:
+Crie o banco de dados e rode as migrações:
 
 ```bash
 rails db:create
 rails db:migrate
 ```
 
+Iniciar o Servidor:
 
-Inicie o Servidor:
-
-Para rodar o servidor Rails localmente, use o comando:
+Para rodar a aplicação localmente, use o comando:
 
 ```bash
-rails s
+    rails s
 ```
 
-O aplicativo estará disponível em http://localhost:3000.
+### A aplicação estará acessível em http://localhost:3000.
 
-Como Configurar as Credenciais
 
-As credenciais (como chaves de API e senhas) são armazenadas no arquivo config/credentials.yml.enc, que é criptografado. Você pode acessar e editar as credenciais com o seguinte comando:
+### **4. Adicionar ao `.gitignore`**
+
+### Certifique-se de que a pasta **`tmp`** e **`server.pid`** estão no **`.gitignore`** para garantir que as variáveis específicas do ambiente local não sejam versionadas e enviadas para o repositório:
+
+```bash
+# .gitignore
+/tmp
+/tmp/*
+/tmp/pids/*
+```
+
+## Configuração de Credenciais
+
+As credenciais (como chaves de API e senhas) são armazenadas no arquivo config/credentials.yml.enc, que é criptografado. Para editar as credenciais, use o seguinte comando:
 
 ```bash
 EDITOR="vim" rails credentials:edit
 ```
+
+Lembre-se de que a chave mestra master.key deve ser mantida em segredo. Você pode configurá-la como uma variável de ambiente no seu ambiente de produção, como no Render.
 
 Lembre-se de que a chave mestra master.key deve ser mantida em segredo. Você pode configurá-la como uma variável de ambiente em seu ambiente de produção, como no Render.
 Deploy
@@ -106,7 +335,7 @@ A aplicação usa RSpec para testes automatizados. Para rodar os testes, use o s
 bundle exec rspec
 ```
 
-Contribuindo
+## Contribuindo
 
 Sinta-se à vontade para contribuir para o projeto! Se você tiver alguma sugestão ou correção, basta fazer um fork do repositório, criar uma branch com sua alteração, e submeter um pull request.
 
@@ -120,7 +349,7 @@ Push para sua branch (git push origin minha-nova-feature).
 
 Abra um Pull Request.
 
-Licença
+## Licença
 
 Este projeto está sob a licença MIT. Veja o arquivo LICENSE para mais informações.
 
@@ -139,4 +368,5 @@ Obrigado por testar o projeto! Se tiver qualquer dúvida, sinta-se à vontade pa
 - **Contribuindo**: Instruções sobre como contribuir para o projeto.
 - **Licença**: Detalhes sobre a licença do projeto (MIT).
 
-Certifique-se de revisar e ajustar conforme necessário.
+**Certifique-se de revisar e ajustar conforme necessário.**
+
