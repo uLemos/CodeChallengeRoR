@@ -86,7 +86,7 @@ brew install ruby@3.2
 - 3 Verifique a instalação do Ruby:
 
 ```bash
-    ruby -v
+ruby -v
 ```
 
 ### Linux (Ubuntu/Debian):
@@ -101,7 +101,7 @@ sudo apt install ruby-full
 - 2 Verifique a versão do Ruby:
 
 ```bash
-    ruby -v
+ruby -v
 ```
 
 ## Instalar o Rails (versão 7.1)
@@ -123,7 +123,7 @@ rails -v
 **A saída deve ser:**
 
 ```bash
-    Rails 7.1.x
+Rails 7.1.x
 ```
 
 ## Instalar o PostgreSQL (versão 15)
@@ -321,33 +321,33 @@ Deploy
 
 O aplicativo está configurado para deploy automático no Render. Ele utiliza o Docker para a construção da imagem e o GitHub Actions para os processos de CI/CD. Para configurar o deploy:
 
-    Certifique-se de que as credenciais no Render estão configuradas corretamente.
+Certifique-se de que as credenciais no Render estão configuradas corretamente.
 
-    O Render usará o Dockerfile localizado na raiz do projeto para construir a imagem.
+O Render usará o Dockerfile localizado na raiz do projeto para construir a imagem.
 
-    Ao fazer push para a branch main ou dev, o Render irá automaticamente iniciar o processo de deploy e migrar o banco de dados.
+Ao fazer push para a branch main ou dev, o Render irá automaticamente iniciar o processo de deploy e migrar o banco de dados.
 
 Testes
 
 A aplicação usa RSpec para testes automatizados. Para rodar os testes, use o seguinte comando:
 
 ```bash
-  bundle exec rspec
+bundle exec rspec
 ```
 
 ## Contribuindo
 
 Sinta-se à vontade para contribuir para o projeto! Se você tiver alguma sugestão ou correção, basta fazer um fork do repositório, criar uma branch com sua alteração, e submeter um pull request.
 
-    Fork o projeto.
+Fork o projeto.
 
-    Crie uma nova branch (git checkout -b minha-nova-feature).
+Crie uma nova branch (git checkout -b minha-nova-feature).
 
-    Faça suas alterações e commite (git commit -am 'Adicionando nova feature').
+Faça suas alterações e commite (git commit -am 'Adicionando nova feature').
 
-    Push para sua branch (git push origin minha-nova-feature).
+Push para sua branch (git push origin minha-nova-feature).
 
-    Abra um Pull Request.
+Abra um Pull Request.
 
 ## Licença
 
@@ -369,3 +369,4 @@ Obrigado por testar o projeto! Se tiver qualquer dúvida, sinta-se à vontade pa
 - **Licença**: Detalhes sobre a licença do projeto (MIT).
 
 **Certifique-se de revisar e ajustar conforme necessário.**
+
